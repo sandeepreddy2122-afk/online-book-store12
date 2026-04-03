@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Online Book Store</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f4f6f8;
+}
+
+/* HEADER */
+
+header{
+background:#34495e;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav a{
+color:white;
+margin-right:15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* SEARCH BAR */
+
+.search{
+padding:10px 20px;
+}
+
+.search input{
+padding:10px;
+width:250px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+/* CATEGORY BUTTONS */
+
+.categories{
+padding:20px;
+}
+
+.categories button{
+padding:10px 20px;
+margin:5px;
+border:none;
+background:#3498db;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.categories button:hover{
+background:#2980b9;
+}
+
+/* BOOK GRID */
+
+.book-container{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+padding:20px;
+}
+
+/* BOOK CARD */
+
+.book-card{
+background:white;
+padding:15px;
+width:200px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+text-align:center;
+transition:0.3s;
+}
+
+.book-card:hover{
+transform:scale(1.05);
+}
+
+.book-card img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+/* PRICE STYLE */
+
+.mrp{
+text-decoration:line-through;
+color:red;
+}
+
+.offer{
+color:green;
+font-weight:bold;
+}
+
+.discount{
+color:#e67e22;
+font-size:13px;
+}
+
+/* BUTTON */
+
+.book-card button{
+background:#3498db;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.book-card button:hover{
+background:#2980b9;
+}
+
+/* FOOTER */
+
+footer{
+background:#2c3e50;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Online Book Store</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="cart.html" class="cart-icon">
+🛒 Cart
+<span id="cartCount" class="cart-badge">0</span>
+</a>
+</nav>
+
+</header>
+
+<!-- SEARCH BAR -->
+
+<div class="search">
+
+<input type="text" id="searchBox" placeholder="Search books..." onkeyup="searchBooks()">
+
+</div>
+
+<div class="categories">
+
+<button onclick="filterBooks('all')">All</button>
+<button onclick="filterBooks('education')">Education</button>
+<button onclick="filterBooks('history')">History</button>
+<button onclick="filterBooks('love')">Love Story</button>
+<button onclick="filterBooks('technology')">Technology</button>
+<button onclick="filterBooks('science')">Science</button>
+<button onclick="filterBooks('business')">Business</button>
+
+</div>
+
+<div class="book-container">
+
+<!-- KEEPING ALL YOUR BOOKS EXACTLY SAME -->
+
+<!-- EDUCATION -->
+<div class="book-card education" data-mrp="500" onclick="openPopup(this)">
+<img src="images/python.jpg">
+<h3>Python Programming</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card education" data-mrp="600" onclick="openPopup(this)">
+<img src="images/java.jpg">
+<h3>Java Programming</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card education" data-mrp="550" onclick="openPopup(this)">
+<img src="images/datastructures.jpg">
+<h3>Data Structures</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card education" data-mrp="520" onclick="openPopup(this)">
+<img src="images/os.jpg">
+<h3>Operating Systems</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card education" data-mrp="480" onclick="openPopup(this)">
+<img src="images/networks.jpg">
+<h3>Computer Networks</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<!-- HISTORY -->
+<div class="book-card history" data-mrp="400" onclick="openPopup(this)">
+<img src="images/worldhistory.jpg">
+<h3>World History</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card history" data-mrp="420" onclick="openPopup(this)">
+<img src="images/indianhistory.jpg">
+<h3>Indian History</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card history" data-mrp="410" onclick="openPopup(this)">
+<img src="images/ancient.jpg">
+<h3>Ancient Civilizations</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card history" data-mrp="460" onclick="openPopup(this)">
+<img src="images/worldwar.jpg">
+<h3>World War History</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card history" data-mrp="440" onclick="openPopup(this)">
+<img src="images/modernindia.jpg">
+<h3>Modern Indian History</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<!-- LOVE -->
+<div class="book-card love" data-mrp="350" onclick="openPopup(this)">
+<img src="images/lovestory.jpg">
+<h3>Love Story Novel</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card love" data-mrp="300" onclick="openPopup(this)">
+<img src="images/romantic.jpg">
+<h3>Romantic Tales</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card love" data-mrp="350" onclick="openPopup(this)">
+<img src="images/pride.jpg">
+<h3>Pride and Prejudice</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card love" data-mrp="330" onclick="openPopup(this)">
+<img src="images/romeo.jpg">
+<h3>Romeo and Juliet</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card love" data-mrp="370" onclick="openPopup(this)">
+<img src="images/faultstars.jpg">
+<h3>The Fault in Our Stars</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<!-- TECHNOLOGY -->
+<div class="book-card technology" data-mrp="700" onclick="openPopup(this)">
+<img src="images/ai.jpg">
+<h3>Artificial Intelligence</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card technology" data-mrp="650" onclick="openPopup(this)">
+<img src="images/ml.jpg">
+<h3>Machine Learning Basics</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card technology" data-mrp="600" onclick="openPopup(this)">
+<img src="images/webdev.jpg">
+<h3>Web Development</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card technology" data-mrp="750" onclick="openPopup(this)">
+<img src="images/deeplearning.jpg">
+<h3>Deep Learning</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card technology" data-mrp="580" onclick="openPopup(this)">
+<img src="images/cyber.jpg">
+<h3>Cyber Security Basics</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<!-- SCIENCE -->
+<div class="book-card science" data-mrp="450" onclick="openPopup(this)">
+<img src="images/physics.jpg">
+<h3>Physics Fundamentals</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card science" data-mrp="430" onclick="openPopup(this)">
+<img src="images/chemistry.jpg">
+<h3>Chemistry Basics</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card science" data-mrp="500" onclick="openPopup(this)">
+<img src="images/time.jpg">
+<h3>A Brief History of Time</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card science" data-mrp="470" onclick="openPopup(this)">
+<img src="images/astro.jpg">
+<h3>Astrophysics Basics</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card science" data-mrp="430" onclick="openPopup(this)">
+<img src="images/biology.jpg">
+<h3>Biology Fundamentals</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<!-- BUSINESS -->
+<div class="book-card business" data-mrp="300" onclick="openPopup(this)">
+<img src="images/richdad.jpg">
+<h3>Rich Dad Poor Dad</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card business" data-mrp="320" onclick="openPopup(this)">
+<img src="images/growrich.jpg">
+<h3>Think and Grow Rich</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card business" data-mrp="350" onclick="openPopup(this)">
+<img src="images/zerotoone.jpg">
+<h3>Zero to One</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card business" data-mrp="390" onclick="openPopup(this)">
+<img src="images/leanstartup.jpg">
+<h3>The Lean Startup</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+<div class="book-card business" data-mrp="360" onclick="openPopup(this)">
+<img src="images/startwhy.jpg">
+<h3>Start With Why</h3>
+<p class="price"></p>
+<button onclick="event.stopPropagation(); addToCart(this)">Add to Cart</button>
+</div>
+
+</div>
+
+<footer>
+
+<p>© 2026 Online Book Store</p>
+<p>Developed by Sandeep Reddy</p>
+
+</footer>
+
+<script>
+
+/* SEARCH BOOK */
+
+function searchBooks(){
+
+let input=document.getElementById("searchBox").value.toLowerCase();
+
+let books=document.querySelectorAll(".book-card");
+
+books.forEach(book=>{
+
+let title=book.querySelector("h3").innerText.toLowerCase();
+
+if(title.includes(input)){
+book.style.display="block";
+}
+else{
+book.style.display="none";
+}
+
+});
+
+}
+
+/* CATEGORY FILTER */
+
+function filterBooks(category){
+
+let books=document.querySelectorAll(".book-card");
+
+books.forEach(book=>{
+
+if(category==="all"){
+book.style.display="block";
+}
+else if(book.classList.contains(category)){
+book.style.display="block";
+}
+else{
+book.style.display="none";
+}
+
+});
+
+}
+
+/* RANDOM DISCOUNT */
+
+document.querySelectorAll(".book-card").forEach(card=>{
+
+let mrp=parseInt(card.getAttribute("data-mrp"));
+
+let discount=Math.floor(Math.random()*16)+5;
+
+let offer=Math.round(mrp-(mrp*discount/100));
+
+card.querySelector(".price").innerHTML=
+`MRP: <span class="mrp">₹${mrp}</span><br>
+Offer: <span class="offer">₹${offer}</span><br>
+<span class="discount">${discount}% OFF</span>`;
+
+});
+
+/* CART COUNT */
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+document.getElementById("cartCount").innerText=cart.length;
+
+/* ADD TO CART */
+
+function addToCart(button){
+
+let card=button.closest(".book-card");
+
+let name=card.querySelector("h3").innerText;
+
+let price=parseInt(card.querySelector(".offer").innerText.replace("₹",""));
+
+let image=card.querySelector("img").src;
+
+cart.push({name,price,image});
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+document.getElementById("cartCount").innerText=cart.length;
+
+alert(name+" added to cart!");
+
+}
+
+</script>
+
+</div>
+
+</body>
+</html>
